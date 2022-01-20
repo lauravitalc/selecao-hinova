@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Tela de Login - Seleção Hinova</title>
+</head>
+<body>
+
+    <div id="container">
+
+        <main>
+            <h1>Cadastro</h1>
+            
+
+            <div id="formulario">
+
+                <div class="icones">
+                    <i class="fab fa-facebook"></i>  
+                    <i class="fab fa-google-plus"></i>
+                    <i class="fab fa-twitter"></i>
+                </div>
+
+                <form method="get" action=".">
+                <h2>E-mail:</h2>
+                <input type="text" id="email">
+                <h2>Senha:</h2>
+                <input type="password" id="senha">
+                <h2>Data de nascimento:</h2>
+                <input name="data_de_nascimento" type="date" id="data_de_nascimento">
+                <h2>CEP:</h2>
+                 <input name="cep" type="number" id="cep" value="" size="10" maxlength="9"
+                           onblur="pesquisacep(this.value);" />
+                 <h2>Rua:</h2>
+                <input name="rua" type="text" id="rua" />
+                <h2>Bairro:</h2>
+                <input name="bairro" type="text" id="bairro"/>
+                <h2>Cidade</h2> 
+                <input name="cidade" type="text" id="cidade" />
+                <h2>Estado:</h2>
+                <input name="uf" type="text" id="uf" size="2"/>
+
+
+                <div class="botao"><a href="http://">Cadastrar</a></div>
+                
+              </form>
+              
+            </div>
+
+
+        </main>
+
+    </div>
+ <!-- API DO VIA CEP-->
+    <script>
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+            document.getElementById('ibge').value=("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('uf').value=(conteudo.uf);
+            document.getElementById('ibge').value=(conteudo.ibge);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('uf').value="...";
+                document.getElementById('ibge').value="...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+    
+        </script>
+
+ <!--script de exportação icones/vetores -->
+ <script src="https://kit.fontawesome.com/bcf803138c.js" crossorigin="anonymous"></script>
+</body>
+</html>

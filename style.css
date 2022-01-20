@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #036666;
+    color: #292929;
+    font-size:16px;
+    font-family: 'Inter', sans-serif;
+}
+
+#container {
+    margin: 0 auto;
+    width:350px;
+    margin-top:100px;
+}
+
+main {
+    padding:50px;
+    border-radius:10px;
+    background: #fff;
+}
+
+main h1 {
+    font-size: 28px;
+    text-align:center;
+    margin-bottom:20px;
+    font-weight:normal;
+    color: #036666;
+
+}
+
+main h2 {
+    font-size: 18px;
+    text-align:center;
+    margin-bottom:15px;
+    font-weight:normal;
+    color: #036666;
+
+}
+
+main #formulario {
+    text-align: center;
+    font-size:14px;
+}
+
+main input {
+    border:none;
+    background: #f5f5f5;
+    padding:10px;
+    font-size:16px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom:20px;
+}
+
+main .botao  {
+    margin-top:15px;
+   margin-bottom:25px;
+}
+
+main .botao a {
+    color: white;
+    text-decoration: none;
+    font-size:18px;
+    background: #036666;
+     padding:15px;
+     border-radius:5px;
+
+}
+
+main .botao a:hover {
+    color: #8fd1c2;
+    transition: 1s;
+}
+
+main a {
+    text-decoration: none;
+    text-align: center;
+    color: #036666;
+}
+
+.icones {
+    font-size:40px;
+    color:#1b9999;
+    margin-top:10px;
+    margin-bottom:10px;
+}
