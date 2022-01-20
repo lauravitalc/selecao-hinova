@@ -4,6 +4,7 @@
 
 #### E-mail
 #### Senha
+####Nome
 #### Data de Nascimento
 #### CEP
 #### Logradouro, Bairro, Cidade, Estado
